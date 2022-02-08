@@ -1,10 +1,8 @@
-# Hashicorp Vault
+# Hashicorp Vault High Availability with Raft Storage and CSI Driver
 
-## Vault HA Server with Raft
+## Install using helm chart
 
-### Install using helm chart
-
-- values.yaml
+- Create a values.yaml
 
 ```yaml
 injector:
@@ -46,7 +44,7 @@ helm repo add hashicorp https://helm.releases.hashicorp.com
 helm install vault-server hashicorp/vault -f values.yaml
 ```
 
-### 2. Setup Vault (without auto-unseal)
+## Initialize Vault Server
 
 - When the chart is installed the pods will run with `not ready` status. To fix this we need to `initialize` & `unseal` vault in all the pods one by one.
 
@@ -75,12 +73,9 @@ Unseal Key (will be hidden): [copy paste one of the keys here]
 
 ```
 
-## Vault CSI Driver [link](https://learn.hashicorp.com/tutorials/vault/kubernetes-secret-store-driver?in=vault/kubernetes)
+## Install the Secrets Store CSI Driver
 
-
-### Install Secret Store CSI Driver
-
-1. Create a `values.yaml`
+- Create a `values.yaml`
 
 ```yaml
 syncSecret:
@@ -88,7 +83,7 @@ syncSecret:
 enableSecretRotation: true
 ```
 
-2. Install it with helm chart
+- Install it with helm chart
 
 ```sh
 helm repo add secrets-store-csi-driver https://raw.githubusercontent.com/kubernetes-sigs/secrets-store-csi-driver/master/charts
@@ -96,9 +91,11 @@ helm repo add secrets-store-csi-driver https://raw.githubusercontent.com/kuberne
 helm install csi secrets-store-csi-driver/secrets-store-csi-driver -f values.yaml
 ```
 
-### Install Vault CSI
+## Install the Vault CSI Driver
 
-1. Create a `values.yaml`
+Followed this [guide](https://learn.hashicorp.com/tutorials/vault/kubernetes-secret-store-driver?in=vault/kubernetes) from Hashicorp.
+
+- Create a `values.yaml`
 
 ```yaml
 server:
@@ -107,7 +104,7 @@ csi:
   enabled: true
 ```
 
-2. Install it with helm chart
+- Install it with helm chart
 
 ```sh
 helm repo add hashicorp https://helm.releases.hashicorp.com
@@ -116,7 +113,7 @@ helm install vault-csi hashicorp/vault -f values.yaml
 ```
 
 
-### Enable Kubernetes Auth so the pods can connect to Vault
+## Enable Kubernetes Auth so the pods can connect to Vault
 
 - Enable kubernetes auth:
 
@@ -132,7 +129,7 @@ vault write auth/kubernetes/config \
     kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
 ```
 
-### Create a policy & role for your app
+## Create a policy & role for your app
 
 ```sh
 vault policy write internal-app - <<EOF
@@ -148,14 +145,14 @@ vault write auth/kubernetes/role/database \
     ttl=20m
 ```
 
-### Create a sample app
+## Create a sample app
 
-1. Create a Secret:
+- Create a Secret:
 ```sh
 vault kv put secret/db-pass password="db-secret-password"
 ```
 
-2. Define the SecretProviderClass
+- Define the SecretProviderClass
 
 ```yaml
 apiVersion: secrets-store.csi.x-k8s.io/v1alpha1
@@ -185,7 +182,7 @@ spec:
 kubectl apply -f spc-vault-database.yaml
 ```
 
-3. Create pod with secret mounted:
+- Create pod with secret mounted:
 
 ```sh
 kubectl create serviceaccount webapp-sa
@@ -218,7 +215,7 @@ spec:
 kubectl apply -f webapp-pod.yaml
 ```
 
-4. Test if the secret is really mounted
+- Test if the secret is really mounted
 
 ```sh
 kubectl exec webapp -- cat /mnt/secrets-store/db-password
