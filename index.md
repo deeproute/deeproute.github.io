@@ -12,16 +12,12 @@
 - [Linux](docs/cheatsheets/linux.md)
 - [MariaDB](docs/cheatsheets/mariadb.md)
 - [Network](docs/cheatsheets/network.md)
-- [Postgres](cdocs/heatsheets/postgres.md)
+- [Postgres](docs/heatsheets/postgres.md)
 - [TLS](docs/cheatsheets/tls.md)
 
-## Operations
+## Kubernetes Guides
 
 - [Cluster Management](docs/operations/cluster-management/README.md)
 - [Namespace Management](docs/operations/namespace-management/README.md)
-
-
-[Security](docs/operations/security/README.md)
-
-
-[CI/CD](docs/operations/cicd/README.md)
+- [Security](docs/operations/security/README.md)
+- [CI/CD](docs/operations/cicd/README.md)
