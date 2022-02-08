@@ -2,4 +2,4 @@
 
 ## Some Description
 
-(Link)[docs/index.md] with details.
+[Link](docs/index.md) with details.
