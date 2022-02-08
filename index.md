@@ -1,4 +1,4 @@
-# deeproute's IT Corner (In Construction)
+# deeproute's Corner (In Construction)
 
 ## CheatSheets
 
