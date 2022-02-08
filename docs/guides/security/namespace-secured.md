@@ -1,19 +1,4 @@
-# Create a Namespace in Kubernetes (non-prod)
-
-- [Create a Namespace in Kubernetes (non-prod)](#create-a-namespace-in-kubernetes-non-prod)
-  - [Introduction](#introduction)
-  - [Pre-Requisites](#pre-requisites)
-  - [1. Add an Azure Role to the Team’s Security group.](#1-add-an-azure-role-to-the-teams-security-group)
-  - [2. Store the namespace infrastructure code in argocd](#2-store-the-namespace-infrastructure-code-in-argocd)
-    - [2.1. Create a new branch.](#21-create-a-new-branch)
-    - [2.2. Create a new template folder for the namespace](#22-create-a-new-template-folder-for-the-namespace)
-    - [2.3. Add the namespace configuration in values.yaml](#23-add-the-namespace-configuration-in-valuesyaml)
-    - [2.4. Add the namespace configuration in value-[cluster-name].yaml](#24-add-the-namespace-configuration-in-value-cluster-nameyaml)
-  - [3. Create the Kubernetes Deployment for the namespace](#3-create-the-kubernetes-deployment-for-the-namespace)
-  - [4. Authorize Vault Access for the namespace](#4-authorize-vault-access-for-the-namespace)
-  - [5. Authorize Jenkins Access to the namespace](#5-authorize-jenkins-access-to-the-namespace)
-
-&nbsp;
+# Create a Namespace in Kubernetes (TODO)
 
 ## Pre-Requisites
 

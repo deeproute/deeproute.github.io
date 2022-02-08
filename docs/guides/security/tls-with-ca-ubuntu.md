@@ -1,8 +1,8 @@
-# TLS Certificates
-
-## Generate a CA certificate & Install it in Ubuntu
+# TLS - CA Certificate & install it in Ubuntu
 
 [Reference](https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development)
+
+## Generate a CA certificate
 
 ```sh
 mkdir -p ~/certs/ca/company.org
@@ -10,11 +10,17 @@ cd ~/certs/ca/company.org
 
 openssl genrsa -des3 -out ca.key 2048
 openssl req -x509 -new -nodes -key ca.key -sha256 -days 1825 -out ca.pem
+```
 
+## Install certificate in Ubuntu
+
+```sh
 # If ca-certificates package isn't installed: sudo apt install ca-certificates
 
 sudo cp ~/certs/ca/company.org/ca.pem /usr/local/share/ca-certificates/company.org.crt
+
 sudo update-ca-certificates
+
 
 # Verify if its correctly installed:
 awk -v cmd='openssl x509 -noout -subject' '/BEGIN/{close(cmd)};{print | cmd}' < /etc/ssl/certs/ca-certificates.crt | grep company.org

@@ -17,7 +17,6 @@
 
 ## Kubernetes Guides
 
-- [Cluster Management](docs/operations/cluster-management/README.md)
-- [Namespace Management](docs/operations/namespace-management/README.md)
-- [Security](docs/operations/security/README.md)
-- [CI/CD](docs/operations/cicd/README.md)
+- [Hashicorp Vault with Raft and CSI Driver](docs/guides/security/hashicorp-vault-ha-raft-csi.md)
+- [Install your own CA](docs/guides/security/tls-with-ca-ubuntu.md)
+- [FluxCD using GitHub](docs/guides/cicd/fluxcd.md)

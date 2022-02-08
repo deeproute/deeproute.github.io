@@ -1,6 +1,4 @@
-# Network Policy
-
-TODO
+# Network Policy (TODO)
 
 https://github.com/ahmetb/kubernetes-network-policy-recipes
 
