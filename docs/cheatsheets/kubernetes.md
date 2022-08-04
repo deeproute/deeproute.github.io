@@ -54,20 +54,22 @@ k get pod -n <namespace> --field-selector=status.phase==Failed
 ```
 
 ### Get only the pod name
-
 ```
 k get pod -n <namespace> --field-selector=status.phase==Failed | awk '{print $1}'
 ```
 
 ### Delete failed pods
-
 ```
 k get pod -n <namespace> --field-selector=status.phase==Failed | awk '{print $1}' | xargs k -n <namespace> delete pod
 ```
 
 ### Find all pods that are not fully running (eg some containers are failing)
-
+```
 k get po --all-namespaces | gawk 'match($3, /([0-9])+\/([0-9])+/, a) {if (a[1] < a[2] && $4 != "Completed") print $0}'
+
+# Include pods with more then 5 restarts too
+k get po --all-namespaces | gawk 'match($3, /([0-9])+\/([0-9])+/, a) {if ((a[1] < a[2] && $4 != "Completed") || $5 > 5) print $0}'
+```
 
 ## Managing Storage
 
