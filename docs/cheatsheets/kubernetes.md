@@ -32,6 +32,18 @@ W0210 13:56:20.125641   14586 manifests.go:214] the default kube-apiserver autho
 
 ```
 
+## Node Management
+
+### Connect to an AKS Node
+```sh
+kubectl debug node/aks-default-17330278-vmss00000e  -it --image=mcr.microsoft.com/dotnet/runtime-deps:6.0
+```
+
+### Copy a file from a node
+```sh
+kubectl cp node-debugger-aks-default-17330278-vmss00000e-qs8pr:/tmp/filename filenamenew
+```
+
 ## Manage Deployments
 
 
