@@ -120,6 +120,11 @@ k get namespace "stucked-namespace" -o json \
 
 ## Security
 
+### Get All used Service Accounts
+
+```sh
+kubectl get deploy,statefulset,daemonset --all-namespaces -o custom-columns='KIND:kind,NAMESPACE:metadata.namespace,NAME:metadata.name,SERVICE_ACCOUNT:spec.template.spec.serviceAccountName'
+```
 ### Get all rolebindings and associated service accounts
 
 ```
