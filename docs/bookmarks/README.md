@@ -30,3 +30,7 @@
 #### AKS
 
 - [The AKS Checklist](https://www.the-aks-checklist.com)
+
+## Security
+
+- [SSL CA for local https development](https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development)
